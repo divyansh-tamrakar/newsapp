@@ -20,11 +20,12 @@ export default class News extends Component {
         this.setState({articles: parsedData.articles, totalResults: parsedData.totalResults})
     }
     handleNextClick = async () =>{
-        console.log("Clicked Next")
-        if(this.state.page + 1 > Math.ceil(this.state.totalResults/20)){
         
+        if(this.state.page + 1 > Math.ceil(this.state.totalResults/20)){
+            console.log("not possible")
         }
         else{
+            console.log("Clicked Next")
             const url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=221654f1c2424239af9c0f379e3b6076&page=${this.state.page + 1}&pageSize=20`
             let data = await fetch(url)
             let parsedData = await data.json()
@@ -33,7 +34,7 @@ export default class News extends Component {
             this.setState({articles: parsedData.articles,
                 page: this.state.page+1
             })
-            console.log('not possible')
+            
         }
     }
 
@@ -51,7 +52,8 @@ export default class News extends Component {
   render() {
     return (
         <div className="container my-3">
-            <h1>News Monkey's Top headlines</h1>
+            <h1 className='text-center'>News Monkey's Top headlines</h1>
+            <br />
             
             <div className="row">
             {this.state.articles.map((element)=> {
@@ -65,7 +67,7 @@ export default class News extends Component {
             </div>
             <div className="container d-flex justify-content-between">
                 <button type="button" disabled={this.state.page <= 1} className="btn btn-dark" onClick={this.handlePrevClick}> &larr; Previous</button>
-                <button type="button" className="btn btn-dark" onClick={this.handleNextClick}>Next &rarr;</button>
+                <button type="button" disabled={this.state.page + 1 > Math.ceil(this.state.totalResults/20)} className="btn btn-dark" onClick={this.handleNextClick}>Next &rarr;</button>
             </div>
         </div>
         
