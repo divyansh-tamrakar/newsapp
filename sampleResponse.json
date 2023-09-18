@@ -1,0 +1,32 @@
+{
+    "status": "ok",
+    "totalResults": 38,
+    "articles": [
+      {
+        "source": {
+          "id": null,
+          "name": "NDTV News"
+        },
+        "author": null,
+        "title": "Watch: PM Modi's Metro Ride On His Birthday, Selfies With Passengers - NDTV",
+        "description": "Prime Minister Narendra Modi today took a ride in Delhi Metro after inaugurating the extension of the Airport Express line in Dwarka.",
+        "url": "https://www.ndtv.com/india-news/pm-narendra-modi-turns-73-pm-modi-birthday-pm-modis-metro-ride-on-his-birthday-selfies-with-passengers-4397491",
+        "urlToImage": "https://c.ndtvimg.com/2023-09/72asdgb8_pm-modi_625x300_17_September_23.jpg",
+        "publishedAt": "2023-09-17T08:23:00Z",
+        "content": "PM Modi also spoke to the staff of the Delhi Metro Rail Corporation (DMRC)\r\nNew Delhi: Prime Minister Narendra Modi today took a metro ride after inaugurating the extension of the Airport Express lin\u2026 [+1249 chars]"
+      },
+      {
+        "source": {
+          "id": "the-hindu",
+          "name": "The Hindu"
+        },
+        "author": "The Hindu",
+        "title": "Why Nipah virus outbreaks are occurring only in Kerala - The Hindu",
+        "description": null,
+        "url": "https://www.thehindu.com/sci-tech/health/why-nipah-virus-outbreaks-are-occurring-only-in-kerala/article67311946.ece",
+        "urlToImage": null,
+        "publishedAt": "2023-09-17T07:43:00Z",
+        "content": null
+      }
+    ]
+}
