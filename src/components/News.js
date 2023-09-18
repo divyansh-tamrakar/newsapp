@@ -7,16 +7,46 @@ export default class News extends Component {
         super();
         this.state = {
             articles: [],
-            loading: false
+            loading: false,
+            page: 1
         }
     }
     async componentDidMount(){
-        const url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=221654f1c2424239af9c0f379e3b6076"
+        const url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=221654f1c2424239af9c0f379e3b6076&pageSize=20"
         let data = await fetch(url)
         let parsedData = await data.json()
         // this.articles = parsedData.articles
         // console.log(parsedData.articles)
-        this.setState({articles: parsedData.articles})
+        this.setState({articles: parsedData.articles, totalResults: parsedData.totalResults})
+    }
+    handleNextClick = async () =>{
+        console.log("Clicked Next")
+        if(this.state.page + 1 > Math.ceil(this.state.totalResults/20)){
+        
+        }
+        else{
+            const url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=221654f1c2424239af9c0f379e3b6076&page=${this.state.page + 1}&pageSize=20`
+            let data = await fetch(url)
+            let parsedData = await data.json()
+            // this.articles = parsedData.articles
+            // console.log(parsedData.articles)
+            this.setState({articles: parsedData.articles,
+                page: this.state.page+1
+            })
+            console.log('not possible')
+        }
+    }
+
+    handlePrevClick = async () => {
+        console.log("Clicked Previous")
+        const url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=221654f1c2424239af9c0f379e3b6076&page=${this.state.page - 1}&pageSize=20`
+        let data = await fetch(url)
+        let parsedData = await data.json()
+        // this.articles = parsedData.articles
+        // console.log(parsedData.articles)
+        this.setState({articles: parsedData.articles,
+            page: this.state.page-1
+        })
     }
   render() {
     return (
@@ -32,6 +62,10 @@ export default class News extends Component {
                     newsUrl={element.url}/>
                 </div>
             })}
+            </div>
+            <div className="container d-flex justify-content-between">
+                <button type="button" disabled={this.state.page <= 1} className="btn btn-dark" onClick={this.handlePrevClick}> &larr; Previous</button>
+                <button type="button" className="btn btn-dark" onClick={this.handleNextClick}>Next &rarr;</button>
             </div>
         </div>
         
