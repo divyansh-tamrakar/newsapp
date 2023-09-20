@@ -7,7 +7,7 @@ export default class News extends Component {
     static defaultProps ={
         country: 'in',
         pageSize: 8,
-        category: 'business'
+        category: 'general'
     }
 
     static propTypes ={
@@ -71,12 +71,16 @@ export default class News extends Component {
 
     convertDate = (milliseconds) =>{
         let hours = Math.floor(milliseconds/(1000*60*60))
-        let minutes = Math.floor(hours/(1000*60))
+        // let minutes = Math.floor(hours/(1000*60))
         let nowTime = Date.now()
-        console.log(nowTime)
+        // console.log(nowTime)
         let nowHours = Math.floor(nowTime/(1000*60*60))
-        let nowMinutes = Math.ceil(nowHours/(1000*60))
-        return `${nowHours - hours}hrs and ${nowMinutes - minutes}mins ago`
+        // let nowMinutes = Math.ceil(nowHours/(1000*60))
+        let diff = nowHours - hours
+        if(diff > 24) {
+            return `${Math.floor(diff/24)} days ago`
+        }
+        return `${nowHours - hours}hrs ago`
     }
     render() {
         return (
@@ -90,7 +94,7 @@ export default class News extends Component {
                         <NewsItem title={element.title!==null?element.title.slice(0, 30):element.title}
                         description={element.description!==null?element.description.slice(0, 50):"Click to read more"} 
                         imageURL={element.urlToImage!==null ? element.urlToImage:'https://media.istockphoto.com/id/177766582/photo/blank-newspaper-headline-template.jpg?s=612x612&w=0&k=20&c=d41DheIvLxstJrqPrDQrhRG0BAbgObCwx784u-VmOJk='}
-                        newsUrl={element.url} publishedAt={this.convertDate(Date.parse(element.publishedAt))}/>
+                        newsUrl={element.url} source={element.source.name} author={element.author? element.author: 'Unknown Author'} publishedAt={this.convertDate(Date.parse(element.publishedAt))}/>
                     </div>
                 })}
                 </div>
